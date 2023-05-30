@@ -481,8 +481,6 @@ function showListPage(totalPage) {
 showListPage(listMovie.length);
 
 function renderListMovie(param) {
-    console.log("da vao");
-    console.log(param);
     let result = "";
     for (let i = 0; i < param.length; i++) {
         if (i >= star && i < end) {
@@ -541,8 +539,14 @@ for (let i in catalogStyleList) {
         renderMovieByStyle(catalogStyleList[i].classList[1]);
     });
 }
-
-document.querySelector("#logo").setAttribute("onClick", "javascript: renderListMovie(listMovie);showListPage(listMovie.length); filteredMovies = listMovie;");
+function clicklogo() {
+    filteredMovies = listMovie;
+    currentPage = 1;
+    showCurrentPaage(currentPage);
+    renderListMovie(listMovie);
+    showListPage(listMovie.length);
+}
+document.querySelector("#logo").setAttribute("onClick", "javascript:clicklogo()");
 
 
 
