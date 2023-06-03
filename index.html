@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -23,23 +23,24 @@
             </div>
 
             <div class="nav">
-                <span class="nav-span-option filterMovie">Phim moi</span>
-                <span class="nav-span-option PL">Phim lẻ</span>
-                <span class="nav-span-option PB">Phim bộ</span>
+                <span class="nav-span-option filterMovie">Phim mới</span>
+                <span onclick="removeShowMoivieItem()" class="nav-span-option ">Trang chủ</span>
                 <span class="nav-span-option a1">
                     Thể loại
                     <ul class="sub-nav1">
                         <li class="catalog__style CR">Phim chiếu rạp</li>
-                        <li class="catalog__style CO_T">Phim cổ trang CT2</li>
-                        <li class="catalog__style TC">Phim tình cảm TC</li>
-                        <li class="catalog__style TL">Phim tâm lý TL</li>
-                        <li class="catalog__style KD">Phim kinh dị KD</li>
-                        <li class="catalog__style HD">Phim hành động HD</li>
-                        <li class="catalog__style VO_T">Phim võ thuật VT</li>
-                        <li class="catalog__style CT">Phim chiến tranh CT</li>
-                        <li class="catalog__style PH">Phim hài PH</li>
-                        <li class="catalog__style HH">Phim Hoạt Hình HH</li>
-                        <li class="catalog__style VI_TU">Phim viễn tưởng VT2</li>
+                        <li class="catalog__style CO_T">Phim cổ trang </li>
+                        <li class="catalog__style TC">Phim tình cảm </li>
+                        <li class="catalog__style TL">Phim tâm lý </li>
+                        <li class="catalog__style KD">Phim kinh dị </li>
+                        <li class="catalog__style HD">Phim hành động </li>
+                        <li class="catalog__style VO_T">Phim võ thuật </li>
+                        <li class="catalog__style CT">Phim chiến tranh </li>
+                        <li class="catalog__style PH">Phim hài </li>
+                        <li class="catalog__style HH">Phim Hoạt Hình </li>
+                        <li class="catalog__style VI_TU">Phim viễn tưởng </li>
+                        <li class="catalog__style PL">Phim lẻ </li>
+                        <li class="catalog__style PB">Phim bộ </li>
                     </ul>
                 </span>
                 <span class="nav-span-option a2">
@@ -61,13 +62,57 @@
                 <input class="nav-span-option-inp" type="text" placeholder="Tìm Kiếm...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
+
+            <div id="btn__style__login" class="login_btn">
+                <a id="login__btn" href="./html/login.html">Đăng Nhập</a>
+            </div>
+            <div id="btn__style__logout" class="logout_btn">
+                <a id="logout__btn" onclick="checkLogout()" href="">Đăng Xuất</a>
+            </div>
+            <div id="btn__style__admin" class="admin_btn">
+                <a id="admin__btn" href="./html/admin.html">Admin</a>
+            </div>
+            <div id="btn__setting__img">
+                <label for="control_img"><i id="btn__style__icon__user" class="fa-solid fa-user"></i> </label>
+                <input id="control_img" type="file" onchange="changeImage(this)">
+            </div>
+            <div id="btn__style__img__user">
+                <img id="img_profile" src="./img/user_img/userImg.jpg" alt="">
+            </div>
         </div>
     </div>
     <div id="content">
         <div id="left-content">
 
 
-            <!-- <div class="item">
+            <!-- <div class="slideBar">
+                <div class="slideBar__content">
+                    <div class="content__item default">
+                        <img class="item--image" src="" alt="" />
+                    </div>
+                    <div class="content__item next">
+                        <img class="item--image" src="" alt="" />
+                    </div>
+                    <div class="circle__groups"></div>
+                    <div class="content__item block"></div>
+                </div>
+                <div class="borderOn"></div>
+            </div> -->
+            <div class="slidebar">
+                <img onclick="defaultImgId" class="defaultImg">
+                <img onclick="nextImgId" class="nextImg">
+                <div class="scroll__bar">
+                    <div class="bar__item active"></div>
+                    <div class="bar__item"></div>
+                    <div class="bar__item"></div>
+                    <div class="bar__item"></div>
+                    <div class="bar__item"></div>
+                </div>
+            </div>
+
+
+            <div id="render__Movie">
+                <!-- <div class="item">
                 <div class="item-img">
                     <img src="" alt="">
                 </div>
@@ -75,10 +120,10 @@
                     <p>bui hai kien</p>
                 </div>
             </div> -->
-
+            </div>
 
         </div>
-        <div id="right-content">
+        <!-- <div id="right-content">
             <div class="right-item">
                 <div class="right-item-img">
                     <img src="" alt="">
@@ -105,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <div class="right-item">
+            <div class="right-item ">
                 <div class="right-item-img">
                     <img src="" alt="">
                 </div>
@@ -117,72 +162,93 @@
                         <span class="year">2023</span>
                     </div>
                 </div>
-            </div>
-        </div>
-
-
-        <!-- 
-        <div id="trailer-container">
-            <div id="trailer-movie-container">
-            <div class="trailer-movie-left">
-                <div class="trailer-movie-video">
-
-                    <video id="trailer-video" controls></video>
-                        <iframe id="trailer-video" src="" title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-
-                </div>
-                <div class="trailer-movie-info">
-
-                </div>
-                <div class="trailer-movie-comment">
-
-
-                    
-                </div>
-            </div>
-            <div class="right-item">
-                <div class="right-item-img">
-                    <img src="" alt="">
-                </div>
-                <div class="right-item-info">
-                    <h3>kien hai bui</h3>
-                    <div class="rating">
-                        <i class="fa-regular fa-star"></i>
-                        <span class="point">12</span>
-                        <span class="year">2023</span>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="trailer-movie-right">
-
-            </div>
             </div>
         </div> -->
-
-
-
     </div>
-
-
-
-    <div class="list-page">
+    <div class="list-page ">
 
         <i id="show-list-page-left" class="fa-solid fa-caret-left"></i>
         <ul id="listPage">
             <!-- <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li> 
-                    -->
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li> 
+                        -->
         </ul>
         <i id="show-list-page-right" class="fa-solid fa-caret-right"></i>
     </div>
+    <div id="kien">
+        <!-- <div id="trailer-container">
+            <div class="trailer-movie-left">
+                <div class="trailer-movie-video">
+                    <video src="./videos/video__project.mp4" controls>
+                        Your browser does not support the <code>video</code> element.
+                    </video>
+                </div>
+                <div class="trailer-movie-comment-container">
+                    <div class="trailer-movie-comment">
+
+
+                        <div class="trailer-movie-comment-header">
+                            <h3><span id="total__comment"> 0 </span>
+                                <span> Bình luận </span>
+                            </h3>
+                            
+                        </div>
+
+                        <div class="trailer-movie-comment-body">
+                            <div class="user__img">
+                                <img src="userItem.src" alt="">
+                            </div>
+                            <div id="ii" class="user__comment">
+                                <textarea onkeydown=on_button() name="" id="input__commment" cols="30"
+                                    rows="10"></textarea>
+                            </div>
+                            <div class="sumbit__comment">
+                                <button onclick="addComment()" id="onSubmitCmt" class="on__sumbit__comment">
+                                    Đăng
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="trailer-movie-comment-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="trailer-movie-right">
+                <div class="right-item">
+                    <div class="right-item-img">
+                        <img src="${index.src}" alt="">
+                    </div>
+                    <div class="right-item-info">
+                        <p>${index.name}</p>
+                        <div class="rating">
+                            <i class="fa-regular fa-star"></i>
+                            <span class="point">12</span>
+                            <span class="year">2023</span>
+                            <p class="info__movie">Vệ Binh Dải Ngân Hà 3 – Guardians of the Galaxy Volume 3 (2023) sau
+                                khi
+                                mua Knowhere từ The Collector, đội Vệ binh dải
+                                Ngân Hà cố gắng biến nó thành nơi trú ẩn an toàn cho những người tị nạn sau cú búng tay
+                                di
+                                dời. Nhưng sau một cuộc tấn
+                                công tàn bạo, Peter Quill, vẫn cảm xúc vì mất Gamora, phải tập hợp các Vệ binh để thực
+                                hiện
+                                sứ mệnh bảo vệ vũ trụ và bảo
+                                vệ một người trong số họ khỏi kẻ thù chung nguy hiểm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+
 
 
 
@@ -273,56 +339,11 @@
             </div>
         </div>
     </div>
+    <script>
 
+    </script>
 
-
-
-    <div id="trailer-container">
-        <!-- <div id="trailer-movie-container"> -->
-        <div class="trailer-movie-left">
-            <div class="trailer-movie-video">
-
-                <!-- <video id="trailer-video" controls></video>
-                            <iframe id="trailer-video" src="" title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe> -->
-
-            </div>
-            <div class="trailer-movie-info">
-
-            </div>
-            <div class="trailer-movie-comment">
-
-
-
-            </div>
-        </div>
-
-
-
-
-        <div class="trailer-movie-right">
-            <div class="right-item">
-                <div class="right-item-img">
-                    <img src="" alt="">
-                </div>
-                <div class="right-item-info">
-                    <h3>kien hai bui</h3>
-                    <div class="rating">
-                        <i class="fa-regular fa-star"></i>
-                        <span class="point">12</span>
-                        <span class="year">2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- </div> -->
-    </div>
-
-
-
-    <script src="./user.js">
+    <script src="./js/user.js">
 
     </script>
 </body>
