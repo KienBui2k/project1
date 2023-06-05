@@ -1,96 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/register.css">
-    <link rel="stylesheet" href="../css/toastMessage.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="../css/toastMessage.css" />
 
     <title>register</title>
-</head>
+  </head>
 
-
-<body>
-
+  <body>
     <form id="register__container" method="POST">
-        <h1>Đăng Ký</h1>
-        <div id="register__email" class="form-group">
-            <input type="text" id="email" name="email" class="form-control" placeholder="Nhập vào email đăng ký">
-            <span class="form-message"></span>
-        </div>
-        <div id="register__name" class="form-group">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Nhập tên người dùng">
-            <span class="form-message"></span>
-        </div>
-        <div id="register__password" class="form-group">
-            <input type="password" id="password" name="password" class="form-control"
-                placeholder="Nhập vào mật khẩu đăng ký">
-            <span class="form-message"></span>
-        </div>
-        <div id="register__confirmPassword" class="form-group">
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-                placeholder="Xác nhận lại mật khẩu">
-            <span class="form-message"></span>
-        </div>
-        <button id="buttonRegister" class="form-submit">Đăng Ký</button>
-        <p>Bạn đã có tài khoản <a href="./login.html">Đăng Nhập tại đây</a></p>
+      <h1>Đăng Ký</h1>
+      <div id="register__email" class="form-group">
+        <input
+          type="text"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="Nhập vào email đăng ký"
+        />
+        <span class="form-message"></span>
+      </div>
+      <div id="register__name" class="form-group">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="Nhập tên người dùng"
+        />
+        <span class="form-message"></span>
+      </div>
+      <div id="register__password" class="form-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Nhập vào mật khẩu đăng ký"
+        />
+        <span class="form-message"></span>
+      </div>
+      <div id="register__confirmPassword" class="form-group">
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          class="form-control"
+          placeholder="Xác nhận lại mật khẩu"
+        />
+        <span class="form-message"></span>
+      </div>
+      <button id="buttonRegister" class="form-submit">Đăng Ký</button>
+      <p>Bạn đã có tài khoản <a href="./login.html">Đăng Nhập tại đây</a></p>
     </form>
-    <div id="toast">
+    <div id="toast"></div>
 
-    </div>
-    <script src="../js/register.js">
-    </script>
-    <script src="../js/validator.js">
-
-    </script>
+    <script src="../js/validator.js"></script>
+    <script src="../js/register.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            Validator({
-                form: '#register__container',
-                formGroupSelector: '.form-group',
-                errorSelector: '.form-message',
-                rules: [
-                    Validator.isEmail('#email', 'vui lòng nhập đầy đủ tên của bạn'),
-                    Validator.isRequired('#name'),
-                    Validator.minLength('#password', 6),
-                    Validator.isRequired('#confirmPassword'),
-                    Validator.isConfirmed('#confirmPassword', function () {
-                        return document.querySelector('#register__container #password').value;
-                    }, 'Mật khẩu nhập lại không chính xác')
-                ],
-                onSubmit: function (data) {
-                    // Call API
-                    console.log(data);
-                    let listUsers = JSON.parse(localStorage.getItem("listUsers")) || [];
-                    let flag = true;
-                    for (let i = 0; i < listUsers.length; i++) {
-                        if (listUsers[i].email == data.email) {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (flag) {
-                        data.idUser = uuid();
-                        data.comment = [];
-                        data.profile = [];
-                        listUsers.push(data);
-                        localStorage.setItem("listUsers", JSON.stringify(listUsers));
-                        showSuccessToast();
-                        function changeToLoginPage() {
-                            window.location.href = "login.html";
-                        }
-                        setTimeout(changeToLoginPage, 1000);
-                    } else {
-                        showErrorToast()
-                    }
-                }
-            });
-        });
+      document.addEventListener("DOMContentLoaded", function () {
+        Validator({
+          form: "#register__container",
+          formGroupSelector: ".form-group",
+          errorSelector: ".form-message",
+          rules: [
+            Validator.isEmail("#email", "vui lòng nhập đầy đủ tên của bạn"),
+            Validator.isRequired("#name"),
+            Validator.minLength("#password", 6),
+            Validator.isRequired("#confirmPassword"),
+            Validator.isConfirmed(
+              "#confirmPassword",
+              function () {
+                return document.querySelector("#register__container #password")
+                  .value
+              },
+              "Mật khẩu nhập lại không chính xác"
+            ),
+          ],
+          onSubmit: function (data) {
+            // Call API
+            console.log(data)
+            let listUsers = JSON.parse(localStorage.getItem("listUsers")) || []
+            let flag = true
+            for (let i = 0; i < listUsers.length; i++) {
+              if (listUsers[i].email == data.email) {
+                flag = false
+                break
+              }
+            }
+            if (flag) {
+              data.idUser = uuid()
+              data.comment = []
+              data.profile = []
+              listUsers.push(data)
+              localStorage.setItem("listUsers", JSON.stringify(listUsers))
+              showSuccessToast()
+              function changeToLoginPage() {
+                window.location.href = "login.html"
+              }
+              setTimeout(changeToLoginPage, 1000)
+            } else {
+              showErrorToast()
+            }
+          },
+        })
+      })
     </script>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,76 @@
+.user-manage-container {
+  display: flex;
+  margin-top: 70px;
+}
+
+.left-pane {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-pane {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.edit-btn {
+  background-color: blue;
+  color: white;
+}
+
+.lock-btn {
+  background-color: #ada4a4;
+  color: white;
+}
+
+.locked {
+  background-color: #ada4a4;
+  color: white;
+}
+
+.unlock-btn {
+  background-color: #ada4a4;
+}
+
+.delete-btn {
+  background-color: #ada4a4;
+  color: white;
+}

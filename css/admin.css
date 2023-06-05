@@ -1,0 +1,113 @@
+.movie-container {
+  display: flex;
+  margin-top: 70px;
+}
+
+.left-pane {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-pane {
+  flex: 2;
+  padding: 20px;
+  height: 700px;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  background-color:#ada4a4;
+  color: white;
+
+}
+
+.edit-btn {
+  background-color:#ada4a4;
+  color: white;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+tr td:nth-child(1) {
+  width: 15%;
+}
+
+table tr td:nth-child(2) {
+
+  width: 15%;
+}
+
+table tr td:nth-child(3) {
+
+  width: 50%;
+}
+
+table tr td:nth-child(3) .delete-btn {
+  position: relative;
+  left: 20%;
+}
+
+
+table tr td:nth-child(4) {
+
+  width: 20%;
+}
+
+/* 
+td span, */
+td button {
+  display: inline-flex;
+  justify-content: center;
+
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}

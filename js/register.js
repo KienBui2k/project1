@@ -1,3 +1,4 @@
+
 function uuid() {
     var temp_url = URL.createObjectURL(new Blob());
     var uuid = temp_url.toString();
@@ -65,7 +66,7 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
                 clearTimeout(autoRemoveId);
             }
         };
-
+        
         const icons = {
             success: "fas fa-check-circle",
             info: "fas fa-info-circle",
@@ -96,45 +97,4 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
 // Chức năng đăng ký
 
 
-document.addEventListener('DOMContentLoaded', function () {
 
-    Validator({
-        form: '#register__container',
-        formGroupSelector: '.form-group',
-        errorSelector: '.form-message',
-        rules: [
-            Validator.isEmail('#email'),
-            Validator.minLength('#password', 6),
-            Validator.isRequired('#confirmPassword'),
-            Validator.isConfirmed('#confirmPassword', function () {
-                return document.querySelector('#register__container #password').value;
-            }, 'Mật khẩu nhập lại không chính xác')
-        ],
-        onSubmit: function (data) {
-            // Call API
-            console.log(data);
-            let listUsers = JSON.parse(localStorage.getItem("listUsers")) || [];
-            let flag = true;
-            for (let i = 0; i < listUsers.length; i++) {
-                if (listUsers[i].email == data.email) {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag) {
-                data.idUser = uuid();
-                data.comment = [];
-                
-                listUsers.push(data);
-                localStorage.setItem("listUsers", JSON.stringify(listUsers));
-                showSuccessToast();
-                function changeToLoginPage() {
-                    window.location.href = "login.html";
-                }
-                setTimeout(changeToLoginPage, 1000);
-            } else {
-                showErrorToast()
-            }
-        }
-    });
-});

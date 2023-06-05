@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý người xem</title>
+
+    <link rel="stylesheet" href="../css/user-manage.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <head>
+    <title>Quản lý phim</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div id="header">
+      <div id="nav">
+        <div id="logo">
+          <img src="../img/icon_img.png" alt="" />
+        </div>
+
+        <div class="nav">
+          <span class="nav-span-option"
+            ><a href="../index.html">Trang chủ</a></span
+          >
+        </div>
+        <div id="btn__style__logout" class="logout_btn">
+          <a id="logout__btn" onclick="checkLogout()" href="">Đăng Xuất</a>
+        </div>
+        <div id="btn__style__admin" class="admin_btn">
+          <a id="admin__btn" href="./html/admin.html">Admin</a>
+        </div>
+        <div id="btn__setting__img">
+          <label for="control_img"
+            ><i id="btn__style__icon__user" class="fa-solid fa-user"></i>
+          </label>
+          <input id="control_img" type="file" onchange="changeImage(this)" />
+        </div>
+      </div>
+    </div>
+    <div class="user-manage-container">
+      <div class="left-pane">
+        <h1>Quản lý người xem</h1>
+        <form id="userForm" style="display: block">
+          <h2 id="formTitle">Chỉnh sửa thông tin người dùng</h2>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required /><br />
+          <label for="name">Name:</label>
+          <input type="text" id="name" readonly /><br />
+          <label for="password">Password:</label>
+          <input type="password" id="password" required /><br />
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" required /><br />
+          <button type="submit" id="submitButton">Lưu</button>
+          <button type="button" id="cancelButton">Thoát</button>
+        </form>
+      </div>
+      <div class="right-pane">
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Comment</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="userList"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="../js/user-manage.js"></script>
+  </body>
+</html>
