@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Lấy danh sách phim từ localStorage
     let listMovie = JSON.parse(localStorage.getItem("listMovie")) || [];
+    let listComments = JSON.parse(localStorage.getItem("listComments")) || [];
 
     // Hiển thị danh sách phim
     displayMovieList();
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayMovieList() {
         let tableBody = document.getElementById("movieList");
         tableBody.innerHTML = "";
+
         for (let movie of listMovie) {
             let row = document.createElement("tr");
 
@@ -92,27 +94,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Hiển thị danh sách comment
             let commentCell = document.createElement("td");
-            let listComment = JSON.parse(localStorage.getItem("listComments")) || [];
-            let filterComment = listComment.filter((item) => {
+            let filterComment = listComments.filter((item) => {
                 return item.idMovie == movie.idMovie;
             })
 
             for (let comment of filterComment) {
-
                 let deleteCommentBtn = document.createElement("button");
                 deleteCommentBtn.textContent = "Xóa";
                 deleteCommentBtn.classList.add("delete-btn");
 
                 let commentText = document.createElement("span");
                 commentText.textContent = comment.content;
+
                 deleteCommentBtn.addEventListener("click", function () {
-                    // xóa comment theo id
-                    filterComment = filterComment.filter(function (c) {
+                    // Xóa comment khỏi danh sách
+                    listComments = listComments.filter(function (c) {
                         return c.idComment !== comment.idComment;
                     });
-                    localStorage.setItem("listComments", JSON.stringify(filterComment));
+
+                    // Cập nhật danh sách comment trong localStorage
+                    localStorage.setItem("listComments", JSON.stringify(listComments));
+
+                    // Hiển thị lại danh sách phim
                     displayMovieList();
                 });
+
                 commentCell.appendChild(commentText);
                 commentCell.appendChild(deleteCommentBtn);
                 commentCell.appendChild(document.createElement("br"));
@@ -122,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let editBtn = document.createElement("button");
             editBtn.textContent = "Sửa";
             editBtn.classList.add("edit-btn");
+
             editBtn.addEventListener("click", function () {
                 // Đổ dữ liệu phim vào form để chỉnh sửa
                 document.getElementById("name").value = movie.name;
@@ -137,18 +144,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("submitButton").textContent = "Cập nhật";
                 document.getElementById("formTitle").textContent = "Edit Movie";
             });
+
             actionsCell.appendChild(editBtn);
 
             let deleteBtn = document.createElement("button");
             deleteBtn.textContent = "Xóa";
             deleteBtn.classList.add("delete-btn");
+
             deleteBtn.addEventListener("click", function () {
+                // Xóa phim khỏi danh sách
                 listMovie = listMovie.filter(function (m) {
                     return m.idMovie !== movie.idMovie;
                 });
+
+                // Xóa các comment liên quan đến phim
+                listComments = listComments.filter(function (comment) {
+                    return comment.idMovie !== movie.idMovie;
+                });
+
+                // Cập nhật danh sách phim và comment trong localStorage
                 localStorage.setItem("listMovie", JSON.stringify(listMovie));
+                localStorage.setItem("listComments", JSON.stringify(listComments));
+
+                // Hiển thị lại danh sách phim
                 displayMovieList();
             });
+
             actionsCell.appendChild(deleteBtn);
 
             row.appendChild(nameCell);
@@ -162,9 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function uuid() {
         var temp_url = URL.createObjectURL(new Blob());
-        var uuid = temp_url.toString();
-        URL.revokeObjectURL(temp_url);
-
-        return uuid.substr(uuid.lastIndexOf('/') + 1); // remove prefix (e.g. blob:null/, blob:www.test.com/, ...)
+        var uuid = temp_url.toString
     }
 });

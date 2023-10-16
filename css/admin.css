@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(91, 87, 87);
+}
+
 .movie-container {
   display: flex;
   margin-top: 70px;
@@ -45,13 +49,13 @@ button {
   justify-content: center;
   width: 40px;
   height: 30px;
-  background-color:#ada4a4;
+  background-color: #ada4a4;
   color: white;
 
 }
 
 .edit-btn {
-  background-color:#ada4a4;
+  background-color: #ada4a4;
   color: white;
 }
 
@@ -66,6 +70,7 @@ td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid black;
+
 }
 
 tr td:nth-child(1) {
